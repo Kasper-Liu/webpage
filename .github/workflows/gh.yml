@@ -1,0 +1,47 @@
+# Deploy to Github Pages
+
+name: GH
+
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Get Git Folder
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Install nodejs
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      # install sass
+      - name: Install Sass
+        run: npm install
+
+      
+      - name: Add the build folder
+        run: |
+        mkdir build
+        mkdir build/static
+
+      - name: Compile Sass
+        run: sass src/static/styles.scss build/static/styles.css
+      
+      - name: Copy static files to build folder
+        run: |
+        cp src/static/avatar.jpeg build/static/avatar.jpeg
+        cp src/static/script.js build/static/script.js
+        cp src/blog.html build/blog.html
+        cp src/index.html src build/blog.html
+
+      - name: Deploy 
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
