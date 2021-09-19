@@ -22,7 +22,7 @@ jobs:
           node-version: "16"
       # install sass
       - name: Install Sass
-        run: npm install
+        run: npm install -g sass
 
       - name: Add the build folder
         run: mkdir build
