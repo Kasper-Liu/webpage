@@ -24,24 +24,27 @@ jobs:
       - name: Install Sass
         run: npm install
 
-      
       - name: Add the build folder
         run: mkdir build
 
       - name: Add the static folder
         run: mkdir build/static
-        
+
       - name: Compile Sass
         run: sass src/static/styles.scss build/static/styles.css
-      
-      - name: Copy static files to build folder
-        run: |
-        cp src/static/avatar.jpeg build/static/avatar.jpeg; \
-          cp src/static/script.js build/static/script.js; \
-          cp src/blog.html build/blog.html; \
-          cp src/index.html src build/blog.html \
 
-      - name: Deploy 
+      #- name: Copy static files to build folder
+      # run: |
+      #  cp src/static/avatar.jpeg build/static/avatar.jpeg; \
+      # cp src/static/script.js build/static/script.js; \
+      #cp src/blog.html build/blog.html; \
+      #cp src/index.html src build/blog.html \
+    - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
