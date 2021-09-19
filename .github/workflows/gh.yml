@@ -27,7 +27,7 @@ jobs:
       
       - name: Add the build folder
         run: |
-        mkdir build
+        mkdir build,
         mkdir build/static
 
       - name: Compile Sass
@@ -35,13 +35,13 @@ jobs:
       
       - name: Copy static files to build folder
         run: |
-        cp src/static/avatar.jpeg build/static/avatar.jpeg
-        cp src/static/script.js build/static/script.js
-        cp src/blog.html build/blog.html
+        cp src/static/avatar.jpeg build/static/avatar.jpeg,
+        cp src/static/script.js build/static/script.js,
+        cp src/blog.html build/blog.html,
         cp src/index.html src build/blog.html
 
       - name: Deploy 
         uses: peaceiris/actions-gh-pages@v3
         with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
