@@ -39,7 +39,7 @@ jobs:
         cp src/static/avatar.jpeg build/static/avatar.jpeg; \
           cp src/static/script.js build/static/script.js; \
           cp src/blog.html build/blog.html; \
-          cp src/index.html src build/blog.html
+          cp src/index.html src build/blog.html \
 
       - name: Deploy 
         uses: peaceiris/actions-gh-pages@v3
